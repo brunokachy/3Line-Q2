@@ -1,6 +1,5 @@
 package com.verifycard.entrypoint.models;
 
-import com.verifycard.core.models.BankCard;
 import lombok.Data;
 
 @Data
@@ -8,5 +7,14 @@ public class BankCardVerificationResponse {
 
     private boolean success;
 
-    private BankCard payload;
+    private PayLoad payload;
+
+    @Data
+    public static class PayLoad{
+        private String bank;
+
+        private String type;
+
+        private String scheme;
+    }
 }

@@ -1,6 +1,5 @@
 package com.verifycard.entrypoint.controller;
 
-import com.verifycard.core.models.BankCard;
 import com.verifycard.core.service.CardStatService;
 import com.verifycard.core.service.CardVerificationService;
 import com.verifycard.entrypoint.models.ApiResponse;
@@ -27,13 +26,9 @@ public class BankCardController {
     private final CardStatService cardStatService;
 
     @GetMapping(value = "verify/{cardNumber}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ApiResponse<BankCardVerificationResponse>> getBankCardDetails(@PathVariable("cardNumber") String cardNumber){
+    public ResponseEntity<ApiResponse<BankCardVerificationResponse>> verifyCard(@PathVariable("cardNumber") String cardNumber){
 
-        BankCard bankCard = cardVerificationService.verifyCard(cardNumber);
-
-        BankCardVerificationResponse response = new BankCardVerificationResponse();
-        response.setPayload(bankCard);
-        response.setSuccess(true);
+        BankCardVerificationResponse response = cardVerificationService.verifyCard(cardNumber);
 
         ApiResponse<BankCardVerificationResponse> apiResponse = new ApiResponse<>("Processed successfully.", response);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);

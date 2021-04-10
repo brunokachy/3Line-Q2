@@ -1,8 +1,8 @@
 package com.verifycard.core.service;
 
-import com.verifycard.core.models.BankCard;
+import com.verifycard.entrypoint.models.BankCardVerificationResponse;
 
 public interface CardVerificationService {
 
-    BankCard verifyCard(String cardNumber);
+    BankCardVerificationResponse verifyCard(String cardNumber);
 }
