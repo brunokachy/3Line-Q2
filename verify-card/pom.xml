@@ -11,7 +11,7 @@
 	<groupId>com.verify-card</groupId>
 	<artifactId>verify-card</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>verify-card</name>
 	<description>Project for Customer Card Verification</description>
 	<properties>
@@ -52,7 +52,6 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>
-
 	</dependencies>
 
 	<build>
