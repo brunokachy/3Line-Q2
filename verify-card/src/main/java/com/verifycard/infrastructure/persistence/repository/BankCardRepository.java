@@ -12,6 +12,6 @@ public interface BankCardRepository extends CrudRepository<BankCardEntity, Long>
 
     Optional<BankCardEntity> findBankCardByCardNumber(String cardNumber);
 
-    @Query(value = "select b from BankCard b")
+    @Query(value = "select b from BankCardEntity b")
     Page<BankCardEntity> getBankCards(Pageable pageable);
 }

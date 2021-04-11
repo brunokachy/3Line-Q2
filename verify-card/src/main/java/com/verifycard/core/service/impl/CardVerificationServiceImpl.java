@@ -1,7 +1,7 @@
 package com.verifycard.core.service.impl;
 
 import com.verifycard.core.exception.BadRequestException;
-import com.verifycard.core.models.CardClientResponse;
+import com.verifycard.core.models.RestClientResponse;
 import com.verifycard.core.models.CardResolutionResponse;
 import com.verifycard.core.service.BankCardPersistenceService;
 import com.verifycard.core.service.CardServiceClient;
@@ -41,7 +41,7 @@ public class CardVerificationServiceImpl implements CardVerificationService {
             return buildResponse(bankCard, true);
         }
 
-        CardClientResponse<CardResolutionResponse> response = cardServiceClient.resolveCard(cardNumber);
+        RestClientResponse<CardResolutionResponse> response = cardServiceClient.resolveCard(cardNumber);
 
         if(!response.isSuccess() || response.getStatusCode() != HttpStatus.OK.value() || response.getData() == null){
             return buildResponse(null, false);
@@ -52,8 +52,8 @@ public class CardVerificationServiceImpl implements CardVerificationService {
         BankCardEntity bankCard = new BankCardEntity();
         bankCard.setBank(cardResolutionResponse.getBank() == null ? "" : cardResolutionResponse.getBank().getName());
         bankCard.setCardNumber(cardNumber);
-        bankCard.setScheme(SchemeType.valueOf(cardResolutionResponse.getScheme()));
-        bankCard.setType(CardType.valueOf(cardResolutionResponse.getType()));
+        bankCard.setScheme(StringUtils.isNotEmpty(cardResolutionResponse.getScheme()) ? SchemeType.valueOf(cardResolutionResponse.getScheme().toUpperCase()) : SchemeType.NOT_AVAILABLE);
+        bankCard.setType(StringUtils.isNotEmpty(cardResolutionResponse.getType()) ? CardType.valueOf(cardResolutionResponse.getType().toUpperCase()) : CardType.NOT_AVAILABLE);
         bankCard.setRequestCount(1);
         bankCard = bankCardPersistenceService.saveRecord(bankCard);
 

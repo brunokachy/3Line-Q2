@@ -10,11 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice
+@ControllerAdvice(basePackages = {"com.verifycard.entrypoint.controller"})
 @Log4j2
-public class ExceptionHandlerConfig extends ResponseEntityExceptionHandler {
+public class ExceptionHandlerConfig {
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ApiResponse<String>> handleBadRequestException(BadRequestException e) {
