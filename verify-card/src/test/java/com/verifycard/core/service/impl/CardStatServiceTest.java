@@ -1,11 +1,12 @@
 package com.verifycard.core.service.impl;
 
 import com.verifycard.core.service.BankCardPersistenceService;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
 public class CardStatServiceTest {
 
     @InjectMocks
@@ -13,11 +14,5 @@ public class CardStatServiceTest {
 
     @Mock
     private BankCardPersistenceService bankCardPersistenceService;
-
-//    @BeforeEach
-//    void setUp() {
-//        MockitoAnnotations.openMocks(this);
-//    }
-
 
 }
